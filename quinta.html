@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600i,700,700i,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
+  </head>
+
+  <body>
+<div class="container-fluid">
+<div class="container"> 
+    <div class="row pb-4"> 
+        <div class="col sm-12 pb-0 mb-3" id="vis">
+            <div id="rounded mover">
+                <div class="text-center" style="padding-top: 100px" id="resultado"></div>
+            </div>
+        </div>
+      
+    <div class="col-sm-8" style="padding-left: 100px">
+        <h3 class="border-bottom py-2">Ganas</h3>
+        <p>Esta visualización tiene como objetivo mostrar las ganas de asistir a la universidad dependiendo el día y de las clases. De izquierda a derecha está la sucesión de Lunes a Viernes. A simple vista se puede observar que los días Miércoles y Viernes hay una mayor motivación por asistir a las clases.  </p>
+      </div>
+    <div class="col-sm-3 small">
+        <h5 class="border-bottom py-2">Semanalmente</h5>
+        <p>Se usó una escala del 1 al 7, donde</p> 
+        <p> 1 _ baja</p>
+        <p> 3 _ media</p> 
+        <p> 7 _ alta</p>
+        <p>Los datos almacenados en esta visualización corresponden a este <a href="https://api.myjson.com/bins/11pcg3" id="especial">JSON.</a></p>
+      </div>
+ </div>
+</div>
+ 
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="index.html">Grandón Cristina </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">Portada</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="segunda.html">Trabajo</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="tercera.html">Ramos</a>
+      </li>  
+        <li class="nav-item">
+        <a class="nav-link" href="cuarta.html">Tiempos</a>
+      </li>
+       <li class="nav-item active">
+        <a class="nav-link" href="quinta.html">Ganas<span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+     <li class="collapse navbar-collapse col-sm-2 text-right ">
+        <a class="nav-item" href="info.html" id="especial"> Info</a>
+      </li>
+  </div>
+</nav>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.dom.min.js"></script>
+<script>
+
+    var paraMover=0;
+    function preload() {
+        let datos = 'https://api.myjson.com/bins/11pcg3'
+        dias = loadJSON(datos);
+        console.log(dias);
+
+    }
+
+    function setup() {
+        createCanvas(windowWidth, 400).parent("resultado").style("padding-top:10%");
+        background(000);
+        noStroke();
+        for (var m = 0; m < 5; m++) {
+            for (var i = 0; i < 3; i++) {
+                console.log(dias[m].ganas[i]);
+
+                fill(90, 220, 230);
+                
+                rect(paraMover+300, 0, 30, (dias[m].ganas)*20,0,0,10,10);
+
+
+            }
+
+            paraMover+=100;
+            text(dias[m].dia.charAt(1))
+        }
+
+    }
+    </script>
+    
+ </body>
+</html>

@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600i,700,700i,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
+  </head>
+
+  <body>
+<div class="container"> 
+    <div class="row pb-4"> 
+        <div class="col-sm-12 p-0 mb-3" id="vis">
+            <div class="rounded mover">
+                <div class="text-center" style="padding-top: 100px" id="visualizacion"></div>
+            </div>
+        </div>
+  
+    <div class="col-sm-8" style="padding-left: 100px">
+        <h3 class="border-bottom py-2">Trabajo</h3>
+        <p>A lo largo de estos cuatro años, la FAU se ha convertido en el espacio en donde
+        trabajo, convivo con mis compañeres y amigues y en donde carreteo. Básicamente
+        es el lugar en el que paso la mayor parte de mi tiempo. Los tres años anteriores
+        pasaba todos los días en las dependencias de la U; finalmente, este año mis horarios
+        me han dejado dos días pseudo-libres, pero aún así, en esos momentos pseudo-libres tengo que gastarlos avanzando entregas en la misma U. </p>
+      </div>
+        <div class="col-sm-3 small">
+            <h5 class="border-bottom pt-3 pb-2">Dedicación</h5>
+            <p>Los datos almacenados en esta visualización corresponden a este <a href="https://api.myjson.com/bins/q5rn7" id="especial">JSON.</a></p>
+        </div>
+    </div>
+</div>
+ 
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="index.html">Grandón Cristina </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">Portada</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="segunda.html">Trabajo<span class="sr-only">(current)</span></a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="tercera.html">Ramos</a>
+      </li>  
+        <li class="nav-item">
+        <a class="nav-link" href="cuarta.html">Tiempos</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="quinta.html">Ganas</a>
+      </li>
+    </ul>
+      <li class="collapse navbar-collapse col-sm-2 text-right ">
+        <a class="nav-item" href="info.html" id="especial"> Info</a>
+      </li>
+  </div>
+</nav>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.dom.min.js"></script>
+    
+    <script>
+ 
+    function preload(){
+        datos = loadJSON('https://api.myjson.com/bins/q5rn7');
+    }
+        var dTaller = []; 
+        var dCompu = [];
+        var dAudio = [];
+        var dGrafico = [];
+        var dPubli = [];
+        var dGestion = [];
+        var dPractica = [];
+        var dElectivo = [];
+        var pTaller, pCompu, pAudio, pGrafico, pPubli, pGestion, pPractica, pElectivo;
+        
+        function setup() {
+            
+                console.log(datos)
+                //Taller
+                dTaller.push(datos[0]["dedicacion"][0]);
+                dTaller.push(datos[0]["dedicacion"][1]);
+                pTaller = (dTaller[0]+dTaller[1])/2;
+                
+                //Gráfica Computacional
+                dCompu.push(datos[0]["dedicacion"][0]);
+                dCompu.push(datos[0]["dedicacion"][1]);
+                pCompu = (dCompu[0]+dCompu[1])/2;
+                
+                //Audiovisual
+                dAudio.push(datos[0]["dedicacion"][0]);
+                dAudio.push(datos[0]["dedicacion"][1]);
+                pAudio = (dAudio[0]+dAudio[1])/2;
+                
+                //Seminario
+                dGrafico.push(datos[0]["dedicacion"][0]);
+                dGrafico.push(datos[0]["dedicacion"][1]);
+                pGrafico = (dGrafico[0]+dGrafico[1])/2;
+                
+                //Publicidad
+                dPubli.push(datos[0]["dedicacion"][0]);
+                dPubli.push(datos[0]["dedicacion"][1]);
+                pPubli = (dPubli[0]+dPubli[1])/2;
+                
+                //Gestion
+                dGestion.push(datos[0]["dedicacion"][0]);
+                dGestion.push(datos[0]["dedicacion"][1]);
+                pGestion = (dGestion[0]+dGestion[1])/2;
+                
+                //Practica
+                dPractica.push(datos[0]["dedicacion"][0]);
+                dPractica.push(datos[0]["dedicacion"][1]);
+                pPractica = (dPractica[0]+dPractica[1])/2;
+                
+                //Electivo
+                dElectivo.push(datos[0]["dedicacion"][0]);
+                dElectivo.push(datos[0]["dedicacion"][1]);
+                pElectivo = (dElectivo[0]+dElectivo[1])/2;
+              
+                
+                console.log(
+                    pTaller
+                    +", "+
+                    pCompu
+                    +", "+
+                    pAudio
+                    +", "+
+                    pGrafico
+                    +", "+
+                    pPubli
+                    +", "+
+                    pGestion
+                    +", "+
+                    pPractica
+                    +", "+
+                    pElectivo)
+        }
+   
+   let angles = [30, 10, 45, 35, 60, 38, 75, 67];
+
+        function setup() {
+        createCanvas(720, 400).parent("visualizacion") ;
+        noStroke();
+        noLoop(); // Run once and stop
+        }
+
+        function draw() {
+        background(000);
+        pieChart(360, angles);
+}
+
+        function pieChart(diameter, datos) {
+        let lastAngle = 0;
+        for (var i = 0; i < 8; i++) {
+        let gray = map(i, 0, 8, 0, 255);
+        fill('aquamarine');
+        arc(
+        width / 2,
+        height / 2,
+        diameter,
+        diameter,
+        lastAngle,
+        lastAngle + radians(datos[i])
+        );
+    lastAngle += radians(datos[i]);
+  }
+}
+
+    </script>
+
+  </body>
+</html>
